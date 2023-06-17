@@ -24,19 +24,19 @@ public class Wget implements Runnable {
             byte[] dataBuffer = new byte[speed];
             int bytesRead;
             int downloadData = 0;
+            Calendar startDate = Calendar.getInstance();
+            long startSeconds = TimeUnit.MILLISECONDS.toSeconds(startDate.getTimeInMillis());
             while ((bytesRead = in.read(dataBuffer, 0, speed)) != -1) {
-                Calendar startDate = Calendar.getInstance();
-                long startSeconds = TimeUnit.MILLISECONDS.toSeconds(startDate.getTimeInMillis());
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
-                downloadData = bytesRead;
+                downloadData += bytesRead;
                 if (downloadData >= speed) {
                     Calendar currentDate = Calendar.getInstance();
                     long currentSeconds = TimeUnit.MILLISECONDS.toSeconds(currentDate.getTimeInMillis());
                     long interval = currentSeconds - startSeconds;
                     if (interval < 1) {
                         Thread.sleep(1000 - TimeUnit.MILLISECONDS.toMillis(interval));
-                        downloadData = 0;
                     }
+                    downloadData = 0;
                 }
             }
         } catch (Exception e) {
