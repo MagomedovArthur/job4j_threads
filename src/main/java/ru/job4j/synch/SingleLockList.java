@@ -21,8 +21,7 @@ public class SingleLockList<T> implements Iterable<T> {
     }
 
     public synchronized T get(int index) {
-        T element = list.get(index);
-        return element;
+        return list.get(index);
     }
 
     @Override
@@ -31,7 +30,6 @@ public class SingleLockList<T> implements Iterable<T> {
     }
 
     private synchronized List<T> copy(List<T> origin) {
-        List<T> list = new ArrayList<>(origin);
-        return list;
+        return new ArrayList<>(origin);
     }
 }
