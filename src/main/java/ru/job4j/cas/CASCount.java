@@ -15,7 +15,7 @@ public class CASCount {
 
     public int get() {
         if (count == null) {
-            throw new UnsupportedOperationException("Count is not impl.");
+            throw new UnsupportedOperationException("Count is empty");
         }
         return count.get();
     }
