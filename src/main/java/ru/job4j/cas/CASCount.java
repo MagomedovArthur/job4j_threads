@@ -15,7 +15,7 @@ public class CASCount {
 
     public int get() {
         if (count == null) {
-            throw new UnsupportedOperationException("Count is empty");
+            throw new IllegalArgumentException("Count is empty");
         }
         return count.get();
     }
