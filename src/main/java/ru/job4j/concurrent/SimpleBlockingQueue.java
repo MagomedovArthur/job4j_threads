@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 @ThreadSafe
-public class SimpleBlockingQueue<T> {
+public class
+SimpleBlockingQueue<T> {
     @GuardedBy("queue")
     private Queue<T> queue = new LinkedList<>();
     private int size;
