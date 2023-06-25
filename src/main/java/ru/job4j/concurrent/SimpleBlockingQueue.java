@@ -33,7 +33,6 @@ public class SimpleBlockingQueue<T> {
             }
             T result = queue.poll();
             queue.notify();
-            queue.notify();
             return result;
         }
     }
