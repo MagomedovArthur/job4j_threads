@@ -7,18 +7,42 @@ import static org.assertj.core.api.Assertions.*;
 class CASCountTest {
 
     @Test
-    void whenAddedThreeNumbers() {
+    void whenAddedThreeNumbers() throws InterruptedException {
         CASCount count = new CASCount();
-        count.increment();
-        count.increment();
-        count.increment();
-        assertThat(count.get()).isEqualTo(3);
+        Thread first = new Thread(() -> {
+            for (int i = 1; i <= 5; i++) {
+                count.increment();
+            }
+        });
+        Thread second = new Thread(() -> {
+            for (int i = 1; i <= 2; i++) {
+                count.increment();
+            }
+        });
+        first.start();
+        second.start();
+        first.join();
+        second.join();
+        assertThat(count.get()).isEqualTo(7);
     }
 
     @Test
-    void whenAddedOneNumbers() {
+    void whenAddedOneNumbers() throws InterruptedException {
         CASCount count = new CASCount();
-        count.increment();
-        assertThat(count.get()).isEqualTo(1);
+        Thread first = new Thread(() -> {
+            for (int i = 1; i <= 90_000; i++) {
+                count.increment();
+            }
+        });
+        Thread second = new Thread(() -> {
+            for (int i = 1; i <= 2; i++) {
+                count.increment();
+            }
+        });
+        first.start();
+        second.start();
+        first.join();
+        second.join();
+        assertThat(count.get()).isEqualTo(90_002);
     }
 }
