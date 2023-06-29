@@ -9,15 +9,12 @@ public class EmailNotification {
     );
 
     public void emailTo(User user) {
-        pool.submit(new Runnable() {
-            @Override
-            public void run() {
-                send(
-                        String.format("Notification %s to email %s.", user.userName(), user.email()),
-                        String.format("Add a new event to %s.", user.userName()),
-                        user.email()
-                );
-            }
+        pool.submit(() -> {
+            send(
+                    String.format("Notification %s to email %s.", user.userName(), user.email()),
+                    String.format("Add a new event to %s.", user.userName()),
+                    user.email()
+            );
         });
     }
 
@@ -26,5 +23,12 @@ public class EmailNotification {
 
     public void close() {
         pool.shutdownNow();
+        while (!pool.isTerminated()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
