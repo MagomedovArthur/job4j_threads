@@ -22,7 +22,7 @@ public class EmailNotification {
     }
 
     public void close() {
-        pool.shutdownNow();
+        pool.shutdown();
         while (!pool.isTerminated()) {
             try {
                 Thread.sleep(100);
