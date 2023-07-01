@@ -2,9 +2,6 @@ package ru.job4j.pool;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
 import static org.assertj.core.api.Assertions.*;
 import static ru.job4j.pool.RowColSum.asyncSum;
 import static ru.job4j.pool.RowColSum.sum;
@@ -18,22 +15,28 @@ class RowColSumTest {
                 {1, 9, 7},
                 {4, 8, 2}
         };
-        RowColSum.Sums[] actual = sum(matrix);
-        assertThat(actual[1].getRowSum()).isEqualTo(17);
-        assertThat(actual[1].getColSum()).isEqualTo(19);
-        assertThat(actual[2].getColSum()).isNotZero();
+        Sums[] actual = sum(matrix);
+        Sums[] expected = {
+                new Sums(13, 8),
+                new Sums(17, 19),
+                new Sums(14, 17)
+        };
+        assertThat(actual).contains(expected);
     }
 
     @Test
-    void whenAsyncSum() throws ExecutionException, InterruptedException {
+    void whenAsyncSum() {
         int[][] matrix = new int[][]{
                 {3, 2, 8},
                 {1, 9, 7},
                 {4, 8, 2}
         };
-        RowColSum.Sums[] actual = asyncSum(matrix).get();
-        assertThat(actual[1].getRowSum()).isEqualTo(17);
-        assertThat(actual[1].getColSum()).isEqualTo(19);
-        assertThat(actual[2].getColSum()).isNotZero();
+        Sums[] actual = asyncSum(matrix);
+        Sums[] expected = {
+                new Sums(13, 8),
+                new Sums(17, 19),
+                new Sums(14, 17)
+        };
+        assertThat(actual).contains(expected);
     }
 }
