@@ -31,4 +31,12 @@ class FindIndexTest {
                 "asdas", "iwquy", "iopip", "asdas", "iwquy", "iopip"};
         assertThat(FindIndex.search(array, "asd")).isEqualTo(3);
     }
+
+    @Test
+    void whenElementIsFound1() {
+        String[] array = new String[]{"one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+                "fifteen", "sixteen"};
+        assertThat(FindIndex.search(array, "sixteen")).isEqualTo(15);
+    }
 }
