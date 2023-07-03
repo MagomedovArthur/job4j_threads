@@ -3,7 +3,6 @@ package ru.job4j.pool;
 import java.util.Objects;
 
 public class Sums {
-
     private int rowSum;
     private int colSum;
 
