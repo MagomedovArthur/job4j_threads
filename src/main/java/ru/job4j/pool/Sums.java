@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Sums {
     private int rowSum;
     private int colSum;
-    int counts = 0;
 
     public Sums(int rowSum, int colSum) {
         this.rowSum = rowSum;
@@ -43,5 +42,13 @@ public class Sums {
     @Override
     public int hashCode() {
         return Objects.hash(rowSum, colSum);
+    }
+
+    @Override
+    public String toString() {
+        return "Sums{" +
+                "rowSum=" + rowSum +
+                ", colSum=" + colSum +
+                '}';
     }
 }
