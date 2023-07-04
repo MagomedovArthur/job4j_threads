@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Sums {
     private int rowSum;
     private int colSum;
+    int counts = 0;
 
     public Sums(int rowSum, int colSum) {
         this.rowSum = rowSum;
