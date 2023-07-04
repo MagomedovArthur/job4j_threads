@@ -46,9 +46,9 @@ public class Sums {
 
     @Override
     public String toString() {
-        return "Sums{" +
-                "rowSum=" + rowSum +
-                ", colSum=" + colSum +
-                '}';
+        return "Sums{"
+                + "rowSum=" + rowSum
+                + ", colSum=" + colSum
+                + '}';
     }
 }
