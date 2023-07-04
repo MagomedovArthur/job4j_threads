@@ -43,4 +43,12 @@ public class Sums {
     public int hashCode() {
         return Objects.hash(rowSum, colSum);
     }
+
+    @Override
+    public String toString() {
+        return "Sums{"
+                + "rowSum=" + rowSum
+                + ", colSum=" + colSum
+                + '}';
+    }
 }
