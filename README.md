@@ -7,3 +7,5 @@
 * Non Blocking Algorithm
 * Пулы
 * NIO и многопоточность
+
+Это изменения в ветке master
