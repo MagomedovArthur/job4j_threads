@@ -25,7 +25,7 @@ public class EmailNotification {
         pool.shutdown();
         while (!pool.isTerminated()) {
             try {
-                Thread.sleep(200);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
